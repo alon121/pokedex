@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Log prompt to PROMPTS.md",
+      "trigger": "UserPromptSubmit",
+      "description": "Appends every prompt sent to Kiro to PROMPTS.md using the template's script",
+      "action": {
+        "type": "command",
+        "command": "node scripts/log-prompt.mjs kiro",
+        "timeout": 15
+      }
+    }
+  ]
+}
