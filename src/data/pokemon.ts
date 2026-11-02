@@ -1,6 +1,7 @@
 import type { Pokemon } from '../types/pokemon'
 
-// Temporary sample data for early development. Will be replaced by the API.
+// Small sample list. It was used before the API was connected,
+// and now it is only used as local test data (no network in tests).
 const imageUrl = (id: number) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 

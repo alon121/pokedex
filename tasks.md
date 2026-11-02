@@ -5,6 +5,7 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
 1. [~] **Project setup** (steps 1–5)
    Repo from the course template, prompt log hook, Vite + React + TS, PRD, tasks, folders.
    Done when: `npm run dev` opens the app, `npm run build` passes, and `PROMPTS.md` gets a new entry for each prompt.
+   Note: build and dev work. The Kiro hook (`.kiro/hooks/log-prompt.json`) was added mid-session and still has to be confirmed in a new session.
 
 2. [x] **Local data** (steps 6–7)
    5 sample Pokémon in `src/data/pokemon.ts` and a `Pokemon` type.
@@ -38,7 +39,7 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
    Stats calculated in utils, Stats page, 404 page.
    Done when: `/stats` shows total, count per type, most common type and favorites count; `/nothing` shows a 404 page.
 
-10. [ ] **Tests** (steps 26–27)
+10. [x] **Tests** (steps 26–27)
     Vitest + `@vitest/ui`, at least 5 unit tests.
     Done when: `npm test` passes and exits, and `npm run test:ui` shows the tests in the browser.
 
@@ -46,6 +47,6 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
     Own CSS with Grid, Flexbox and media queries.
     Done when: the app looks tidy at 1280px and at 375px width, images have `alt` and inputs have `label`.
 
-12. [ ] **Submission** (steps 28–30)
+12. [x] **Submission** (steps 28–30)
     README, full check, `docs/architecture.md`, push.
     Done when: the public repo opens without login and all checks in step 29 pass.
