@@ -22,15 +22,15 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
    `getPokemonList` in `src/services/pokemonApi.ts` with `fetch` POST.
    Done when: the list shows 60 real Pokémon, with `Loading...`, error + retry, and empty states.
 
-6. [ ] **Details** (steps 16–17)
+6. [x] **Details** (steps 16–17)
    `getPokemonById`, details page with types, abilities and `PokemonStats`.
    Done when: opening `/pokemon/25` directly shows Pikachu with its types, abilities and stats.
 
-7. [ ] **Search and filter** (steps 18–19)
+7. [x] **Search and filter** (steps 18–19)
    `filterPokemonByName` and `filterPokemonByType` in utils.
    Done when: typing "char" and choosing "fire" together show only Charmander, Charmeleon and Charizard.
 
-8. [ ] **Favorites** (steps 20–21)
+8. [~] **Favorites** (steps 20–21)
    `toggleFavorite`, ids saved in `localStorage`, Favorites page.
    Done when: a favorite added on the list appears on `/favorites` and is still there after refresh.
 

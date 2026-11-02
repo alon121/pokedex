@@ -1,4 +1,10 @@
-import type { ApiPokemon, GraphQLResponse, Pokemon } from '../types/pokemon'
+import type {
+  ApiPokemon,
+  ApiPokemonDetails,
+  GraphQLResponse,
+  Pokemon,
+  PokemonDetails,
+} from '../types/pokemon'
 
 const API_URL = 'https://graphql.pokeapi.co/v1beta2'
 
@@ -9,6 +15,21 @@ const LIST_QUERY = `
       name
       pokemontypes(order_by: { slot: asc }) { type { name } }
       pokemonsprites { sprites(path: "other.official-artwork.front_default") }
+    }
+  }
+`
+
+const DETAILS_QUERY = `
+  query PokemonDetails($id: Int!) {
+    pokemon(where: { id: { _eq: $id } }) {
+      id
+      name
+      height
+      weight
+      pokemontypes(order_by: { slot: asc }) { type { name } }
+      pokemonsprites { sprites(path: "other.official-artwork.front_default") }
+      pokemonabilities { ability { name } }
+      pokemonstats { base_stat stat { name } }
     }
   }
 `
@@ -48,4 +69,22 @@ function toPokemon(apiPokemon: ApiPokemon): Pokemon {
 export async function getPokemonList(): Promise<Pokemon[]> {
   const data = await sendQuery<{ pokemon: ApiPokemon[] }>(LIST_QUERY)
   return data.pokemon.map(toPokemon)
+}
+
+// Returns null when no Pokémon has this id
+export async function getPokemonById(id: number): Promise<PokemonDetails | null> {
+  const data = await sendQuery<{ pokemon: ApiPokemonDetails[] }>(DETAILS_QUERY, { id })
+  const apiPokemon = data.pokemon[0]
+  if (!apiPokemon) return null
+
+  return {
+    ...toPokemon(apiPokemon),
+    height: apiPokemon.height,
+    weight: apiPokemon.weight,
+    abilities: apiPokemon.pokemonabilities.map((a) => a.ability?.name ?? 'unknown'),
+    stats: apiPokemon.pokemonstats.map((s) => ({
+      name: s.stat?.name ?? 'unknown',
+      value: s.base_stat,
+    })),
+  }
 }
