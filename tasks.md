@@ -6,19 +6,19 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
    Repo from the course template, prompt log hook, Vite + React + TS, PRD, tasks, folders.
    Done when: `npm run dev` opens the app, `npm run build` passes, and `PROMPTS.md` gets a new entry for each prompt.
 
-2. [ ] **Local data** (steps 6–7)
+2. [x] **Local data** (steps 6–7)
    5 sample Pokémon in `src/data/pokemon.ts` and a `Pokemon` type.
    Done when: the file compiles with the `Pokemon` type and there is no `any`.
 
-3. [ ] **Components** (step 8, 11)
+3. [x] **Components** (step 8, 11)
    `PokemonList`, `PokemonCard`, `PokemonTypes`, `Navbar`, each with typed props.
    Done when: the list page shows 5 cards with name and image using `map` and `key={id}`.
 
-4. [ ] **Routing** (steps 9–11)
+4. [x] **Routing** (steps 9–11)
    React Router with `/`, `/pokemon/:id`, `/favorites`, `/stats` and a navbar.
    Done when: clicking navbar links and cards changes the URL and page without a full reload.
 
-5. [ ] **GraphQL** (steps 12–15)
+5. [x] **GraphQL** (steps 12–15)
    `getPokemonList` in `src/services/pokemonApi.ts` with `fetch` POST.
    Done when: the list shows 60 real Pokémon, with `Loading...`, error + retry, and empty states.
 

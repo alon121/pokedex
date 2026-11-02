@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
+import Navbar from './components/Navbar'
 import PokemonListPage from './pages/PokemonListPage'
 import PokemonDetailsPage from './pages/PokemonDetailsPage'
 import FavoritesPage from './pages/FavoritesPage'
@@ -7,6 +8,7 @@ import StatsPage from './pages/StatsPage'
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <main>
         <Routes>
           <Route path="/" element={<PokemonListPage />} />
