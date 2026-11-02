@@ -14,11 +14,13 @@ type DetailsResult = {
 function PokemonDetailsPage() {
   const { id } = useParams()
   const pokemonId = Number(id)
+  const isValidId = Number.isInteger(pokemonId) && pokemonId > 0
 
   // Remember which id the result belongs to, so a new id shows Loading again
   const [result, setResult] = useState<DetailsResult | null>(null)
 
   useEffect(() => {
+    if (!isValidId) return // no request for ids like "abc" or "-1"
     let ignore = false
 
     getPokemonById(pokemonId)
@@ -32,7 +34,16 @@ function PokemonDetailsPage() {
     return () => {
       ignore = true
     }
-  }, [pokemonId])
+  }, [pokemonId, isValidId])
+
+  if (!isValidId) {
+    return (
+      <section>
+        <p>"{id}" is not a valid Pokémon number.</p>
+        <Link to="/">Back to the list</Link>
+      </section>
+    )
+  }
 
   const isLoading = result === null || result.id !== pokemonId
   const pokemon = result?.pokemon ?? null
@@ -66,30 +77,32 @@ function PokemonDetailsPage() {
         #{pokemon.id} {pokemon.name}
       </h1>
       {pokemon.image ? (
-        <img src={pokemon.image} alt={pokemon.name} />
+        <img className="details-image" src={pokemon.image} alt={pokemon.name} />
       ) : (
         <p>No image</p>
       )}
 
-      <h2>Types</h2>
-      <PokemonTypes types={pokemon.types} />
+      <div className="details-info">
+        <h2>Types</h2>
+        <PokemonTypes types={pokemon.types} />
 
-      <h2>Abilities</h2>
-      <ul>
-        {pokemon.abilities.length === 0 && <li>Unknown</li>}
-        {pokemon.abilities.map((ability) => (
-          <li key={ability}>{ability}</li>
-        ))}
-      </ul>
+        <h2>Abilities</h2>
+        <ul>
+          {pokemon.abilities.length === 0 && <li>Unknown</li>}
+          {pokemon.abilities.map((ability) => (
+            <li key={ability}>{ability}</li>
+          ))}
+        </ul>
 
-      <p>
-        {/* The API gives height in decimeters and weight in hectograms */}
-        Height: {pokemon.height === null ? '?' : `${pokemon.height / 10} m`} · Weight:{' '}
-        {pokemon.weight === null ? '?' : `${pokemon.weight / 10} kg`}
-      </p>
+        <p>
+          {/* The API gives height in decimeters and weight in hectograms */}
+          Height: {pokemon.height === null ? '?' : `${pokemon.height / 10} m`} · Weight:{' '}
+          {pokemon.weight === null ? '?' : `${pokemon.weight / 10} kg`}
+        </p>
 
-      <h2>Stats</h2>
-      <PokemonStats stats={pokemon.stats} />
+        <h2>Stats</h2>
+        <PokemonStats stats={pokemon.stats} />
+      </div>
     </section>
   )
 }

@@ -1,61 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import LoadStatus from '../components/LoadStatus'
 import PokemonList from '../components/PokemonList'
 import SearchBar from '../components/SearchBar'
+import type { LoadState, Pokemon } from '../types/pokemon'
 import { ALL_TYPES, filterPokemonByName, filterPokemonByType, getAllTypes } from '../utils/filters'
-import { getPokemonList } from '../services/pokemonApi'
-import type { Pokemon } from '../types/pokemon'
 
 type PokemonListPageProps = {
+  pokemonList: Pokemon[]
+  loadState: LoadState
   favoriteIds: number[]
   onToggleFavorite: (id: number) => void
 }
 
-function PokemonListPage({ favoriteIds, onToggleFavorite }: PokemonListPageProps) {
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [reloadCount, setReloadCount] = useState(0)
+function PokemonListPage({ pokemonList, loadState, favoriteIds, onToggleFavorite }: PokemonListPageProps) {
   const [searchText, setSearchText] = useState('')
   const [selectedType, setSelectedType] = useState(ALL_TYPES)
 
-  useEffect(() => {
-    let ignore = false // skip results from an old request
-
-    getPokemonList()
-      .then((list) => {
-        if (!ignore) setPokemonList(list)
-      })
-      .catch((err: Error) => {
-        if (!ignore) setError(err.message)
-      })
-      .finally(() => {
-        if (!ignore) setIsLoading(false)
-      })
-
-    return () => {
-      ignore = true
-    }
-  }, [reloadCount])
-
-  function handleRetry() {
-    setError(null)
-    setIsLoading(true)
-    setReloadCount((count) => count + 1)
-  }
-
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-
-  if (error) {
-    return (
-      <section>
-        <p role="alert">Could not load Pokémon: {error}</p>
-        <button type="button" onClick={handleRetry}>
-          Try again
-        </button>
-      </section>
-    )
+  if (loadState.isLoading || loadState.error) {
+    return <LoadStatus loadState={loadState} />
   }
 
   // Search and filter run on the list we already have, no new request

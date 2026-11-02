@@ -30,11 +30,11 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
    `filterPokemonByName` and `filterPokemonByType` in utils.
    Done when: typing "char" and choosing "fire" together show only Charmander, Charmeleon and Charizard.
 
-8. [~] **Favorites** (steps 20–21)
+8. [x] **Favorites** (steps 20–21)
    `toggleFavorite`, ids saved in `localStorage`, Favorites page.
    Done when: a favorite added on the list appears on `/favorites` and is still there after refresh.
 
-9. [ ] **Statistics** (steps 22–23)
+9. [x] **Statistics** (steps 22–23)
    Stats calculated in utils, Stats page, 404 page.
    Done when: `/stats` shows total, count per type, most common type and favorites count; `/nothing` shows a 404 page.
 
@@ -42,7 +42,7 @@ Status: `[ ]` not started · `[~]` in progress · `[x]` done
     Vitest + `@vitest/ui`, at least 5 unit tests.
     Done when: `npm test` passes and exits, and `npm run test:ui` shows the tests in the browser.
 
-11. [ ] **Styling** (steps 24–25)
+11. [x] **Styling** (steps 24–25)
     Own CSS with Grid, Flexbox and media queries.
     Done when: the app looks tidy at 1280px and at 375px width, images have `alt` and inputs have `label`.
 

@@ -38,3 +38,10 @@ export type GraphQLResponse<T> = {
   data?: T
   errors?: { message: string }[]
 }
+
+// Loading info for the shared Pokémon list, passed from App to the pages
+export type LoadState = {
+  isLoading: boolean
+  error: string | null
+  onRetry: () => void
+}
