@@ -2,10 +2,10 @@
 
 Status: `[ ]` not started · `[~]` in progress · `[x]` done
 
-1. [~] **Project setup** (steps 1–5)
+1. [x] **Project setup** (steps 1–5)
    Repo from the course template, prompt log hook, Vite + React + TS, PRD, tasks, folders.
    Done when: `npm run dev` opens the app, `npm run build` passes, and `PROMPTS.md` gets a new entry for each prompt.
-   Note: build and dev work. The Kiro hook (`.kiro/hooks/log-prompt.json`) was added mid-session and still has to be confirmed in a new session.
+   Note: the Kiro prompt-log hook was added mid-session and logs automatically since 11:13 (see the note at the top of `PROMPTS.md`). The hook files are kept locally and are not in the repo.
 
 2. [x] **Local data** (steps 6–7)
    5 sample Pokémon in `src/data/pokemon.ts` and a `Pokemon` type.
